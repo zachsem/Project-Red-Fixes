@@ -1,0 +1,34 @@
+name: Feature request
+description: Suggest a narrowly scoped improvement to ProjectRed Dedicated Server GUI Fix
+title: "[Feature]: "
+body:
+  - type: textarea
+    id: feature
+    attributes:
+      label: What would you like added or changed?
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Explain the current limitation or compatibility issue.
+    validations:
+      required: true
+
+  - type: textarea
+    id: approach
+    attributes:
+      label: Suggested approach
+      description: Optional. If you have an implementation idea, describe it here.
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope check
+      options:
+        - label: This request is directly related to the ProjectRed 1.16.5 dedicated-server GUI patch.
+          required: true
+        - label: I checked existing issues for the same request.
+          required: true
