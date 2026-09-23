@@ -1,0 +1,56 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="MIT"
+
+[[mods]]
+modId="projectred_server_gui_fix"
+version="${version}"
+displayName="Project Red Server GUI Fix"
+authors="Zach"
+description='''
+Server-side dedicated-server GUI fix for Project Red Integration 4.15.0 on Minecraft 1.16.5.
+Fixes Timer, State Cell, Sequencer, and Counter configuration GUIs without modifying Project Red itself.
+Clients do not need this patch installed.
+'''
+
+[[dependencies.projectred_server_gui_fix]]
+modId="forge"
+mandatory=true
+versionRange="[36.2.34,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.projectred_server_gui_fix]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.16.5]"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.projectred_server_gui_fix]]
+modId="codechickenlib"
+mandatory=true
+versionRange="[4.0.7.445]"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.projectred_server_gui_fix]]
+modId="cb_multipart"
+mandatory=true
+versionRange="[3.0.4.123]"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.projectred_server_gui_fix]]
+modId="projectred-core"
+mandatory=true
+versionRange="[4.15.0]"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.projectred_server_gui_fix]]
+modId="projectred-integration"
+mandatory=true
+versionRange="[4.15.0]"
+ordering="AFTER"
+side="BOTH"
