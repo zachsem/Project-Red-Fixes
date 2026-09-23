@@ -1,0 +1,33 @@
+# Eclipse
+bin/
+*.launch
+.settings/
+.metadata/
+.classpath
+.project
+
+# IntelliJ IDEA
+out/
+*.ipr
+*.iws
+*.iml
+.idea/
+
+# Gradle
+build/
+.gradle/
+
+# Forge run directories
+eclipse/
+run/
+run-data/
+
+# Local dependency jars and logs
+libs/*.jar
+logs/
+crash-reports/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
