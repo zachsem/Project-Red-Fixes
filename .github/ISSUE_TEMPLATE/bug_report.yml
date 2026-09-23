@@ -1,0 +1,54 @@
+name: Bug report
+description: Report a crash, GUI failure, or compatibility problem
+title: "[Bug]: "
+body:
+  - type: input
+    id: minecraft
+    attributes:
+      label: Minecraft and Forge versions
+      placeholder: "Minecraft 1.16.5, Forge 36.2.34"
+    validations:
+      required: true
+
+  - type: input
+    id: versions
+    attributes:
+      label: ProjectRed and dependency versions
+      description: Include ProjectRed Core, ProjectRed Integration, CodeChickenLib, CBMultipart, and this patch.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: gate
+    attributes:
+      label: Affected gate
+      options:
+        - Timer
+        - State Cell
+        - Sequencer
+        - Counter
+        - Other / not gate-specific
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Dedicated-server log or crash report
+      description: Drag and drop latest.log or the relevant crash report here.
+    validations:
+      required: true
