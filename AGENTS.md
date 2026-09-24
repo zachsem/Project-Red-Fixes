@@ -2,7 +2,7 @@
 
 ## Project purpose
 
-ProjectRed 1.16.5 Fixes is a narrowly scoped Forge 1.16.5 compatibility patch collection for ProjectRed 4.15.0.
+ProjectRed Fixes is a narrowly scoped Forge 1.16.5 compatibility patch collection for ProjectRed 4.15.0.
 
 Current fixes:
 
