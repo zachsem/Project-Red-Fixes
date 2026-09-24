@@ -37,14 +37,14 @@ Do not mark 1.1.0 release-ready until all applicable items below have been compl
 - [ ] Single-player: State Cell
 - [ ] Single-player: Sequencer
 - [ ] Single-player: Counter
-- [ ] Dedicated server: Timer
-- [ ] Dedicated server: State Cell
-- [ ] Dedicated server: Sequencer
-- [ ] Dedicated server: Counter
+- [x] Dedicated server: Timer
+- [x] Dedicated server: State Cell
+- [x] Dedicated server: Sequencer
+- [x] Dedicated server: Counter
 - [ ] Change values/settings, close and reopen, and confirm persistence
-- [ ] Dedicated-server client does not have the patch installed
+- [x] Dedicated-server client does not have the patch installed
 - [ ] Multiplayer server list reports the server as compatible
-- [ ] No `invalid dist DEDICATED_SERVER` / client-class loading error
+- [x] No `invalid dist DEDICATED_SERVER` / client-class loading error
 
 ### Bus Converter
 
@@ -58,23 +58,23 @@ Baseline, without the patch:
 
 With the patch:
 
-- [ ] Exact #1906 setup no longer hangs or watchdog-crashes
-- [ ] Bus Converter still converts normally
+- [x] Exact #1906 setup no longer hangs or watchdog-crashes
+- [x] Bus Converter still converts normally
 - [ ] Test each bundled channel 0 through 15 individually
-- [ ] Explicitly verify channel 15 / black / `0x8000`
+- [x] Explicitly verify channel 15 / black / `0x8000`
 - [ ] Test representative multiple-channel masks
-- [ ] Repeatedly power/unpower the setup
+- [x] Repeatedly power/unpower the setup
 - [ ] Save/reload the world and retest
 
 ### CC:Tweaked bundled compatibility
 
 With ProjectRed Transmission and CC:Tweaked installed:
 
-- [ ] ProjectRed bundled cable -> CC:Tweaked computer: read bundled input
-- [ ] CC:Tweaked computer -> ProjectRed bundled cable: write bundled output
-- [ ] Test multiple colors/channels
-- [ ] Test the high/black channel
-- [ ] Test different horizontal sides
+- [x] ProjectRed bundled cable -> CC:Tweaked computer: read bundled input
+- [x] CC:Tweaked computer -> ProjectRed bundled cable: write bundled output
+- [x] Test multiple colors/channels
+- [x] Test the high/black channel
+- [x] Test different horizontal sides
 - [ ] Test top and bottom orientations
 - [ ] Test floor/wall/ceiling face-wire orientations as applicable
 - [ ] Test neutral bundled cable
@@ -85,10 +85,10 @@ With ProjectRed Transmission and CC:Tweaked installed:
 
 Automatic optional-mod behavior:
 
-- [ ] CC:Tweaked absent, ProjectRed Transmission present: server starts and CC compatibility Mixins remain disabled
+- [x] CC:Tweaked absent, ProjectRed Transmission present: server starts and CC compatibility Mixins remain disabled
 - [ ] CC:Tweaked absent, ProjectRed Transmission absent: server starts and optional Mixins remain disabled
-- [ ] CC:Tweaked present, ProjectRed Transmission present: compatibility Mixins apply
-- [ ] Dedicated server still accepts a client without ProjectRed 1.16.5 Fixes installed
+- [x] CC:Tweaked present, ProjectRed Transmission present: compatibility Mixins apply
+- [x] Dedicated server still accepts a client without ProjectRed 1.16.5 Fixes installed
 
 ## Build validation
 
