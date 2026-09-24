@@ -1,19 +1,19 @@
-name: Feature request
-description: Suggest a narrowly scoped improvement to ProjectRed Dedicated Server GUI Fix
-title: "[Feature]: "
+name: Fix request
+description: Suggest a narrowly scoped Project Red compatibility fix
+title: "[Request]: "
 body:
   - type: textarea
     id: feature
     attributes:
-      label: What would you like added or changed?
+      label: What would you like fixed or changed?
     validations:
       required: true
 
   - type: textarea
     id: problem
     attributes:
-      label: What problem would this solve?
-      description: Explain the current limitation or compatibility issue.
+      label: What Project Red 1.16.5 problem would this solve?
+      description: Link an upstream Project Red issue or later-version fix when possible.
     validations:
       required: true
 
@@ -28,7 +28,7 @@ body:
     attributes:
       label: Scope check
       options:
-        - label: This request is directly related to the ProjectRed 1.16.5 dedicated-server GUI patch.
+        - label: This request restores or protects intended Project Red 1.16.5 behavior rather than adding unrelated content.
           required: true
         - label: I checked existing issues for the same request.
           required: true

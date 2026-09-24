@@ -2,11 +2,16 @@
   "required": true,
   "minVersion": "0.8",
   "package": "com.projectredserverguifix.mixin",
+  "plugin": "com.projectredserverguifix.ProjectRedFixesMixinPlugin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "RedstoneTimerGatePartMixin",
     "SequencerMixin",
-    "CounterMixin"
+    "CounterMixin",
+    "BundledSignalsLibMixin",
+    "BundledGatePartMixin",
+    "BundledCablePartMixin",
+    "TransmissionAPIMixin"
   ],
   "injectors": {
     "defaultRequire": 1

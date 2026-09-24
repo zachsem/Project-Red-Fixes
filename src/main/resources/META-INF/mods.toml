@@ -5,12 +5,13 @@ license="MIT"
 [[mods]]
 modId="projectred_server_gui_fix"
 version="${version}"
-displayName="Project Red Server GUI Fix"
+displayName="Project Red Fixes"
 authors="Zach"
 description='''
-Server-side dedicated-server GUI fix for Project Red Integration 4.15.0 on Minecraft 1.16.5.
-Fixes Timer, State Cell, Sequencer, and Counter configuration GUIs without modifying Project Red itself.
-Clients do not need this patch installed.
+Unofficial compatibility fixes for Project Red on Minecraft 1.16.5.
+Includes the dedicated-server gate GUI fix, the Bus Converter server-freeze fix,
+and optional CC:Tweaked bundled-signal compatibility fixes when the relevant
+mods are installed. Does not modify or redistribute Project Red.
 '''
 
 [[dependencies.projectred_server_gui_fix]]
@@ -35,13 +36,6 @@ ordering="AFTER"
 side="BOTH"
 
 [[dependencies.projectred_server_gui_fix]]
-modId="cb_multipart"
-mandatory=true
-versionRange="[3.0.4.123]"
-ordering="AFTER"
-side="BOTH"
-
-[[dependencies.projectred_server_gui_fix]]
 modId="projectred-core"
 mandatory=true
 versionRange="[4.15.0]"
@@ -51,6 +45,13 @@ side="BOTH"
 [[dependencies.projectred_server_gui_fix]]
 modId="projectred-integration"
 mandatory=true
+versionRange="[4.15.0]"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.projectred_server_gui_fix]]
+modId="projectred-transmission"
+mandatory=false
 versionRange="[4.15.0]"
 ordering="AFTER"
 side="BOTH"

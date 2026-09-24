@@ -1,5 +1,5 @@
 name: Bug report
-description: Report a crash, GUI failure, or compatibility problem
+description: Report a Project Red Fixes failure, crash, or compatibility problem
 title: "[Bug]: "
 body:
   - type: input
@@ -13,21 +13,36 @@ body:
   - type: input
     id: versions
     attributes:
-      label: ProjectRed and dependency versions
-      description: Include ProjectRed Core, ProjectRed Integration, CodeChickenLib, CBMultipart, and this patch.
+      label: Project Red and dependency versions
+      description: Include Project Red Core, Integration, Project Red Fixes, and any relevant optional integrations such as Transmission or CC:Tweaked.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected fix
+      options:
+        - Dedicated-server gate GUI
+        - Bus Converter
+        - CC:Tweaked / bundled signals
+        - Other / unsure
     validations:
       required: true
 
   - type: dropdown
     id: gate
     attributes:
-      label: Affected gate
+      label: Affected gate or device
       options:
         - Timer
         - State Cell
         - Sequencer
         - Counter
-        - Other / not gate-specific
+        - Bus Converter
+        - Bundled Cable
+        - CC:Tweaked Computer
+        - Other / not applicable
     validations:
       required: true
 
@@ -48,7 +63,7 @@ body:
   - type: textarea
     id: logs
     attributes:
-      label: Dedicated-server log or crash report
+      label: latest.log or crash report
       description: Drag and drop latest.log or the relevant crash report here.
     validations:
       required: true

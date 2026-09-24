@@ -7,7 +7,7 @@ plugins {
 
 version = mod_version
 group = 'com.projectredserverguifix'
-archivesBaseName = 'ProjectRedServerGuiFix'
+archivesBaseName = 'ProjectRedFixes'
 
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
@@ -48,8 +48,10 @@ dependencies {
 
     implementation fg.deobf("mrtjp:ProjectRed:${mc_version}-${projectred_version}:core")
     implementation fg.deobf("mrtjp:ProjectRed:${mc_version}-${projectred_version}:integration")
+    implementation fg.deobf("mrtjp:ProjectRed:${mc_version}-${projectred_version}:transmission")
 
     implementation "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:deobf"
+    // Compile-time type support required by Project Red classes; Project Red supplies CBMultipart at runtime.
     implementation "codechicken:CBMultipart:${mc_version}-${cbm_version}:deobf"
 }
 
@@ -64,10 +66,10 @@ processResources {
 jar {
     manifest {
         attributes([
-                'Specification-Title'      : 'Project Red Server GUI Fix',
+                'Specification-Title'      : 'Project Red Fixes',
                 'Specification-Vendor'     : 'Zach',
                 'Specification-Version'    : project.version,
-                'Implementation-Title'     : 'Project Red Server GUI Fix',
+                'Implementation-Title'     : 'Project Red Fixes',
                 'Implementation-Version'   : project.version,
                 'Implementation-Vendor'    : 'Zach',
                 'MixinConfigs'             : 'projectred_server_gui_fix.mixins.json'

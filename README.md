@@ -1,101 +1,130 @@
-# ProjectRed Dedicated Server GUI Fix
+# Project Red Fixes
 
-**ProjectRed Dedicated Server GUI Fix** is an unofficial server-side patch for **ProjectRed Integration 4.15.0 on Minecraft 1.16.5**.
+**Project Red Fixes** is an unofficial compatibility patch collection for **Project Red on Minecraft 1.16.5**.
 
-It fixes a dedicated-server classloading bug that prevents several configurable ProjectRed gates from opening their GUIs. The affected gates are:
+It provides small, targeted fixes for known Project Red bugs and compatibility problems without modifying or redistributing Project Red itself.
 
-- Timer
-- State Cell
-- Sequencer
-- Counter
+## Official download
 
-The patch is installed on the **dedicated server only**. Clients do not need this mod.
+Installable releases are published on **CurseForge**:
 
-## What this fixes
+**[Download Project Red Fixes on CurseForge](https://www.curseforge.com/minecraft/mc-mods/project-red-fixes)**
 
-ProjectRed Integration 4.15.0 references client-only GUI classes from common/server gate interaction code. On a true dedicated server, interacting with an affected gate can fail with an error similar to:
+> **Important:** GitHub's **Code → Download ZIP** option downloads the project source code, not the installable mod. Download the release JAR from CurseForge.
 
-```text
-Attempted to load class net/minecraft/client/gui/screen/Screen for invalid dist DEDICATED_SERVER
-```
+## Included fixes
 
-This project redirects those GUI-open calls to a server-safe bridge that sends ProjectRed's existing GUI packets without loading any client-only screen classes.
+### Dedicated-server gate GUIs
 
-The original bug is tracked upstream in [ProjectRed issue #1827](https://github.com/MrTJP/ProjectRed/issues/1827).
+Fixes Timer, State Cell, Sequencer, and Counter configuration GUIs failing on dedicated servers because Project Red attempts to load client-only GUI classes on the server.
+
+Upstream: [Project Red issue #1827](https://github.com/MrTJP/ProjectRed/issues/1827)
+
+### Bus Converter server freeze
+
+Fixes a server freeze involving the Bus Converter and high bundled-redstone channels, including the black / 16th bundled channel.
+
+Upstream:
+
+- [Project Red issue #1906](https://github.com/MrTJP/ProjectRed/issues/1906)
+- [Project Red PR #1813](https://github.com/MrTJP/ProjectRed/pull/1813)
+- [Later black-channel correction](https://github.com/MrTJP/ProjectRed/commit/ab9bd41bcf5ad4d811b9533ba590d9a277d3ab68)
+
+### CC:Tweaked bundled redstone compatibility
+
+Backports Project Red's later bundled-redstone compatibility fixes so Project Red bundled cables and CC:Tweaked computers can correctly exchange bundled signals.
+
+This compatibility code activates automatically only when both **Project Red - Transmission** and **CC:Tweaked** are installed.
+
+Upstream:
+
+- [Project Red issue #1826](https://github.com/MrTJP/ProjectRed/issues/1826)
+- [Project Red commit 41fe682](https://github.com/MrTJP/ProjectRed/commit/41fe682f5da9bc1c9ed52ff9def6980d1421e8f7)
 
 ## Requirements
 
-- Minecraft 1.16.5
-- Forge 36.2.34
-- ProjectRed Core 4.15.0
-- ProjectRed Integration 4.15.0
-- CodeChickenLib 4.0.7.445
-- CBMultipart 3.0.4.123
+Required:
 
-The initial release is intentionally pinned to the exact versions above because those are the versions used for validation.
+- [Project Red - Core](https://www.curseforge.com/minecraft/mc-mods/project-red-core)
+- [Project Red - Integration](https://www.curseforge.com/minecraft/mc-mods/project-red-integration)
+
+Optional:
+
+- [Project Red - Transmission](https://www.curseforge.com/minecraft/mc-mods/project-red-transmission) — used by the bundled-redstone fixes
+- [CC:Tweaked](https://www.curseforge.com/minecraft/mc-mods/cc-tweaked) — used by the CC:Tweaked compatibility fix
+
+The current release targets the final Project Red 1.16.5 line. Exact loader and dependency ranges are defined in the mod metadata and documented in [docs/VALIDATION.md](docs/VALIDATION.md).
 
 ## Installation
 
-1. Install ProjectRed and its required dependencies on the dedicated server as usual.
-2. Place `ProjectRedServerGuiFix-1.0.0.jar` in the server's `mods` folder.
-3. Start the server.
-4. Leave the patch off normal clients.
+1. Install Project Red and its normal dependencies.
+2. Place the Project Red Fixes JAR in the server's `mods` folder.
+3. Start the server normally.
 
-Clients with the normal ProjectRed 1.16.5 setup can connect without installing this patch.
+If upgrading from **Project Red Dedicated Server GUI Fix 1.0.0**, remove the old JAR first. Do not install both versions at the same time.
+
+## Client and server installation
+
+On dedicated servers, **Project Red Fixes can be installed server-side only**. Clients do not need the patch installed to connect.
+
+For single-player, install the mod in the normal client `mods` folder because the integrated server runs inside the client.
+
+## Automatic compatibility handling
+
+There are no user-facing config switches.
+
+- The dedicated-server GUI fix applies to the affected Project Red Integration code.
+- The Bus Converter fix applies to the affected bundled-signal code.
+- CC:Tweaked compatibility patches activate only when the relevant optional mods are present.
 
 ## Validation
 
-Version 1.0.0 was tested on a true Forge dedicated server with an unpatched client.
+The 1.1.0 release was runtime-tested on a true Forge dedicated server.
 
-Validated behavior:
+Release validation covered:
 
-- Timer GUI opens and updates correctly.
-- State Cell GUI opens and updates correctly.
-- Sequencer GUI opens and updates correctly.
-- Counter GUI opens and updates correctly.
-- An unpatched client can connect normally.
-- The server is reported as compatible in the multiplayer list.
-- The original dedicated-server `Screen` classloading error no longer occurs.
+- the dedicated-server gate GUI regression
+- the exact Bus Converter freeze reproduction
+- the black / highest bundled channel
+- CC:Tweaked bundled input and output
+- optional-mod-present and optional-mod-absent startup behavior
+- joining from a client without Project Red Fixes installed
+- patched-versus-unpatched control testing for the original failures
 
-See [docs/VALIDATION.md](docs/VALIDATION.md) for the exact test matrix.
+Additional edge-case coverage is tracked separately and is not presented as verified unless it was actually tested.
+
+See [docs/VALIDATION.md](docs/VALIDATION.md) for the detailed matrix.
 
 ## How it works
 
-ProjectRed already contains the networking needed to open these GUIs. The problem in 4.15.0 is where the packet-send helper lives: the helper is attached to client screen classes, so a dedicated server can attempt to resolve `net.minecraft.client` classes while processing a gate interaction.
+The project uses small Mixins rather than modifying or redistributing Project Red JARs.
 
-This patch uses Mixins to redirect the affected calls to a small common/server-safe packet bridge. It reuses ProjectRed's existing packet channel and packet IDs rather than creating a new GUI or networking protocol.
+- GUI calls are redirected to Project Red's existing server-safe packet channel.
+- The Bus Converter bit scan is corrected using 16-bit masking and unsigned shifting.
+- Bundled interaction calls use the corrected side calculation from newer Project Red code.
+- The Transmission API bundled-input path delegates to Project Red's canonical bundled-input implementation.
+- A Mixin config plugin skips optional compatibility patches when the relevant mods are absent.
 
 ## Building from source
 
 This is a ForgeGradle 5.1 project targeting Java 8.
 
-Recommended build environment:
-
-- JDK 8
-- Gradle 7.6.1
-
-Run:
-
 ```bash
-gradle build
+./gradlew build
 ```
 
-The build resolves ProjectRed, CodeChickenLib, and CBMultipart from the Covers1624 Maven repositories.
+## Issues and requests
 
-## Reporting bugs
+Use the GitHub **Issues** tab for bug reports and narrowly scoped compatibility requests:
 
-Use the GitHub **Issues** tab and include the exact Minecraft, Forge, ProjectRed, CodeChickenLib, CBMultipart, and patch versions; the affected gate; clear reproduction steps; and the dedicated server's `latest.log` or crash report.
-
-Because this patch is specifically for the final ProjectRed 1.16.5 release, reports involving other ProjectRed branches may be outside scope.
+**[Report an issue or request a fix](https://github.com/zachsem/ProjectRed-Dedicated-Server-GUI-Fix/issues)**
 
 ## Credits
 
-- **ProjectRed** — MrTJP, ChickenBones, covers1624, and contributors
-- **ProjectRed Dedicated Server GUI Fix** — zachsem
+- **Project Red** — MrTJP, ChickenBones, covers1624, and contributors
+- **Project Red Fixes** — zachsem
 
-A later ProjectRed change, [PR #1796](https://github.com/MrTJP/ProjectRed/pull/1796), addressed the same class of dedicated-server GUI separation on newer code. This project applies the server-safe packet approach to ProjectRed 4.15.0 on Minecraft 1.16.5.
-
-This is an independent, unofficial compatibility project and is not an official ProjectRed release.
+This is an independent, unofficial compatibility project and is not affiliated with or endorsed by the Project Red developers.
 
 ## License
 
