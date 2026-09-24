@@ -51,6 +51,8 @@ dependencies {
     implementation fg.deobf("mrtjp:ProjectRed:${mc_version}-${projectred_version}:transmission")
 
     implementation "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:deobf"
+    // Compile-time type support required by Project Red classes; Project Red supplies CBMultipart at runtime.
+    implementation "codechicken:CBMultipart:${mc_version}-${cbm_version}:deobf"
 }
 
 processResources {
