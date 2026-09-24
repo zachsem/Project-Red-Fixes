@@ -2,13 +2,13 @@
 
 ## Project purpose
 
-ProjectRed Fixes is a narrowly scoped Forge 1.16.5 compatibility patch collection for ProjectRed 4.15.0.
+Project Red Fixes is a narrowly scoped Forge 1.16.5 compatibility patch collection for Project Red 4.15.0.
 
 Current fixes:
 
-1. ProjectRed #1827 — dedicated-server gate GUI classloading failure
-2. ProjectRed #1906 — Bus Converter freeze caused by signed bit shifting
-3. ProjectRed #1826 — CC:Tweaked bundled-signal compatibility
+1. Project Red #1827 — dedicated-server gate GUI classloading failure
+2. Project Red #1906 — Bus Converter freeze caused by signed bit shifting
+3. Project Red #1826 — CC:Tweaked bundled-signal compatibility
 
 Do not add unrelated gameplay changes, recipes, balance changes, or new content.
 
@@ -16,11 +16,10 @@ Do not add unrelated gameplay changes, recipes, balance changes, or new content.
 
 - Minecraft 1.16.5
 - Forge 36.2.34
-- ProjectRed Core 4.15.0
-- ProjectRed Integration 4.15.0
-- ProjectRed Transmission 4.15.0 when the optional bundled/CC fix is relevant
+- Project Red Core 4.15.0
+- Project Red Integration 4.15.0
+- Project Red Transmission 4.15.0 when the optional bundled/CC fix is relevant
 - CodeChickenLib 4.0.7.445
-- CBMultipart 3.0.4.123
 - Java 8
 
 Do not broaden compatibility claims without testing.
@@ -34,17 +33,17 @@ Affected gates:
 - Sequencer
 - Counter
 
-The patch redirects ProjectRed's static `TimerScreen.open` / `CounterScreen.open` calls to `ProjectRedGuiPacketBridge`.
+The patch redirects Project Red's static `TimerScreen.open` / `CounterScreen.open` calls to `ProjectRedGuiPacketBridge`.
 
 The bridge must remain server-safe and must not import or reference `net.minecraft.client` classes.
 
-It intentionally reuses ProjectRed's existing Integration network channel and packet IDs.
+It intentionally reuses Project Red's existing Integration network channel and packet IDs.
 
 ## Bus Converter patch
 
 `BundledSignalsLibMixin` replaces the broken result path of `BundledSignalsLib.mostSignificantBit(int)` with 16-bit masked unsigned shifting.
 
-Preserve the ProjectRed 1.16 `(int) -> int` method signature. Do not change ProjectRed's caller ABI.
+Preserve the Project Red 1.16 `(int) -> int` method signature. Do not change Project Red's caller ABI.
 
 The important high-bit case is a sign-extended Java `short` such as `0x8000`.
 
@@ -89,8 +88,8 @@ ForgeGradle: 5.1.x.
 
 Follow [docs/VALIDATION.md](docs/VALIDATION.md).
 
-A successful compile is not sufficient to call a release ready. The dedicated-server GUI regression, exact Bus Converter reproduction, high bundled bit, CC read/write behavior, optional-mod combinations, and unpatched-client connection all need runtime validation.
+A successful compile is not sufficient to call a release ready. Core release behavior must be validated proportionally to the change. Additional edge-case coverage may remain documented separately when it is not release-blocking.
 
 ## Scope
 
-Prefer the smallest patch that restores intended ProjectRed behavior. Do not modify or redistribute ProjectRed jars.
+Prefer the smallest patch that restores intended Project Red behavior. Do not modify or redistribute Project Red JARs.
