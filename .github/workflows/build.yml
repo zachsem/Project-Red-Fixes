@@ -32,5 +32,5 @@ jobs:
       - name: Upload built jar
         uses: actions/upload-artifact@v4
         with:
-          name: ProjectRed1165Fixes
+          name: ProjectRedFixes
           path: build/libs/*.jar
