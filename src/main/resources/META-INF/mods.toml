@@ -5,7 +5,7 @@ license="MIT"
 [[mods]]
 modId="projectred_server_gui_fix"
 version="${version}"
-displayName="ProjectRed 1.16.5 Fixes"
+displayName="ProjectRed Fixes"
 authors="Zach"
 description='''
 Unofficial compatibility fixes for ProjectRed 4.15.0 on Minecraft 1.16.5.
