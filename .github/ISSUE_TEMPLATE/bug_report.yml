@@ -14,7 +14,7 @@ body:
     id: versions
     attributes:
       label: ProjectRed and dependency versions
-      description: Include ProjectRed Core, Integration, CodeChickenLib, CBMultipart, and ProjectRed 1.16.5 Fixes. Include Transmission and CC:Tweaked when installed.
+      description: Include ProjectRed Core, Integration, CodeChickenLib, CBMultipart, and ProjectRed Fixes. Include Transmission and CC:Tweaked when installed.
     validations:
       required: true
 
