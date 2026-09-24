@@ -86,7 +86,7 @@ With ProjectRed Transmission and CC:Tweaked installed:
 Automatic optional-mod behavior:
 
 - [x] CC:Tweaked absent, ProjectRed Transmission present: server starts and CC compatibility Mixins remain disabled
-- [ ] CC:Tweaked absent, ProjectRed Transmission absent: server starts and optional Mixins remain disabled
+- [x] CC:Tweaked absent, ProjectRed Transmission absent: server starts and optional Mixins remain disabled
 - [x] CC:Tweaked present, ProjectRed Transmission present: compatibility Mixins apply
 - [x] Dedicated server still accepts a client without ProjectRed 1.16.5 Fixes installed
 
@@ -104,3 +104,12 @@ On the same ProjectRed/Forge test stack, removing ProjectRed 1.16.5 Fixes restor
 - the ProjectRed #1906 Bus Converter reproduction froze the server when the black bundled channel was powered
 
 Reinstalling the 1.1.0 test build restored the working behavior observed in the patched tests above. This provides a direct patched-vs-unpatched control for the two non-CC fixes.
+
+### Core + Integration-only runtime control
+
+With ProjectRed Transmission and CC:Tweaked removed from both server and client, and ProjectRed 1.16.5 Fixes 1.1.0 installed only on the dedicated server:
+
+- the server loaded ProjectRed Core + Integration and the patch without either optional mod
+- only the three dedicated-server GUI Mixins were applied; the optional CC/Transmission Mixins stayed disabled
+- the server reached `Done`, an unpatched client joined successfully, and shutdown completed cleanly
+- the test reused the disposable validation world, so Forge emitted expected missing-registry warnings for previously placed Transmission/CC:Tweaked content; those warnings are unrelated to the patch's optional-mod loading behavior
