@@ -10,6 +10,14 @@ It keeps the existing dedicated-server gate GUI fix and adds two additional back
 
 The fixes are isolated internally and activate automatically when relevant. There are no user-facing config toggles to manage.
 
+## Official download
+
+Installable releases are published on **CurseForge**:
+
+**[Download ProjectRed 1.16.5 Fixes on CurseForge](https://www.curseforge.com/minecraft/mc-mods/projectred-dedicated-server-gui-fix)**
+
+> **Important:** GitHub's **Code → Download ZIP** option downloads the project source code, not the installable mod. Download the release `.jar` from CurseForge and place that file in the appropriate `mods` folder.
+
 ## What this fixes
 
 ### Dedicated-server gate GUIs
