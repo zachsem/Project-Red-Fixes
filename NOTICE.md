@@ -1,6 +1,6 @@
 # Attribution and modification notice
 
-ProjectRed 1.16.5 Fixes is an independent compatibility patch collection created in 2026 for ProjectRed 4.15.0 on Minecraft 1.16.5.
+ProjectRed Fixes is an independent compatibility patch collection created in 2026 for ProjectRed 4.15.0 on Minecraft 1.16.5.
 
 It does not replace or redistribute ProjectRed. The project applies small runtime patches to restore intended behavior in the released 1.16.5 branch.
 
