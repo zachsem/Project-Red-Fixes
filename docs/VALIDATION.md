@@ -50,11 +50,11 @@ Do not mark 1.1.0 release-ready until all applicable items below have been compl
 
 Baseline, without the patch:
 
-- [ ] Reproduce ProjectRed issue #1906 using a Bus Converter in its second mode
-- [ ] Connect neutral bundled wire
-- [ ] Connect black insulated wire
-- [ ] Power the setup
-- [ ] Confirm the original unpatched stack reaches `BundledSignalsLib.mostSignificantBit()` and hangs/watchdog-crashes
+- [x] Reproduce ProjectRed issue #1906 using a Bus Converter in its second mode
+- [x] Connect neutral bundled wire
+- [x] Connect black insulated wire
+- [x] Power the setup
+- [x] Confirm the original unpatched stack hangs/freezes under the #1906 reproduction
 
 With the patch:
 
@@ -95,3 +95,12 @@ Automatic optional-mod behavior:
 - [x] ForgeGradle/Java 8 CI build succeeds for the 1.1.0 source branch
 - [x] Built jar targets Java class version 52
 - [x] Built jar contains the expected seven Mixin classes plus the automatic Mixin config plugin
+
+### A/B control confirmation
+
+On the same ProjectRed/Forge test stack, removing ProjectRed 1.16.5 Fixes restored both original failures:
+
+- configurable gate GUIs failed again on the dedicated server
+- the ProjectRed #1906 Bus Converter reproduction froze the server when the black bundled channel was powered
+
+Reinstalling the 1.1.0 test build restored the working behavior observed in the patched tests above. This provides a direct patched-vs-unpatched control for the two non-CC fixes.
