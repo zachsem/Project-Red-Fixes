@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-Security fixes are considered for the current release of **ProjectRed 1.16.5 Fixes** for Minecraft 1.16.5.
+Security fixes are considered for the current release of **ProjectRed Fixes** for Minecraft 1.16.5.
 
 | Version | Supported |
 | --- | --- |
