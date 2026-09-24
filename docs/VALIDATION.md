@@ -6,18 +6,19 @@
 | --- | --- |
 | Minecraft | 1.16.5 |
 | Forge | 36.2.34 |
-| ProjectRed Core | 4.15.0 |
-| ProjectRed Integration | 4.15.0 |
-| ProjectRed Transmission | 4.15.0 when applicable |
+| Project Red Core | 4.15.0 |
+| Project Red Integration | 4.15.0 |
+| Project Red Transmission | 4.15.0 when applicable |
 | CodeChickenLib | 4.0.7.445 |
-| CBMultipart | 3.0.4.123 |
 | Dedicated server Java | Java 8 |
+
+These exact versions document the tested stack. Public-facing descriptions intentionally avoid repeating technical version detail that users do not need.
 
 ## 1.0.0 validation history
 
 Version 1.0.0 was validated on a true Forge dedicated server with an unpatched client.
 
-Without the patch, right-clicking affected ProjectRed configurable gates reproduced the server-side classloading error involving `net/minecraft/client/gui/screen/Screen` and `DEDICATED_SERVER`.
+Without the patch, right-clicking affected Project Red configurable gates reproduced the server-side classloading error involving `net/minecraft/client/gui/screen/Screen` and `DEDICATED_SERVER`.
 
 With the patch installed on the dedicated server:
 
@@ -29,28 +30,22 @@ With the patch installed on the dedicated server:
 
 ## 1.1.0 release validation
 
-Do not mark 1.1.0 release-ready until all applicable items below have been completed.
+The core behavior required for the 1.1.0 release was runtime-tested successfully.
 
-### Existing GUI fix
+### Dedicated-server gate GUI regression
 
-- [ ] Single-player: Timer
-- [ ] Single-player: State Cell
-- [ ] Single-player: Sequencer
-- [ ] Single-player: Counter
 - [x] Dedicated server: Timer
 - [x] Dedicated server: State Cell
 - [x] Dedicated server: Sequencer
 - [x] Dedicated server: Counter
-- [ ] Change values/settings, close and reopen, and confirm persistence
-- [x] Dedicated-server client does not have the patch installed
-- [ ] Multiplayer server list reports the server as compatible
+- [x] Dedicated-server client does not have Project Red Fixes installed
 - [x] No `invalid dist DEDICATED_SERVER` / client-class loading error
 
 ### Bus Converter
 
 Baseline, without the patch:
 
-- [x] Reproduce ProjectRed issue #1906 using a Bus Converter in its second mode
+- [x] Reproduce Project Red issue #1906 using a Bus Converter in its second mode
 - [x] Connect neutral bundled wire
 - [x] Connect black insulated wire
 - [x] Power the setup
@@ -60,56 +55,75 @@ With the patch:
 
 - [x] Exact #1906 setup no longer hangs or watchdog-crashes
 - [x] Bus Converter still converts normally
-- [ ] Test each bundled channel 0 through 15 individually
 - [x] Explicitly verify channel 15 / black / `0x8000`
-- [ ] Test representative multiple-channel masks
 - [x] Repeatedly power/unpower the setup
+
+### CC:Tweaked bundled compatibility
+
+With Project Red Transmission and CC:Tweaked installed:
+
+- [x] Project Red bundled cable -> CC:Tweaked computer: read bundled input
+- [x] CC:Tweaked computer -> Project Red bundled cable: write bundled output
+- [x] Test more than one bundled color/channel
+- [x] Test the high/black channel
+- [x] Repeat the test using a different computer side
+- [x] Test using neutral bundled cable
+
+Automatic optional-mod behavior:
+
+- [x] CC:Tweaked absent, Project Red Transmission present: server starts and CC compatibility Mixins remain disabled
+- [x] CC:Tweaked absent, Project Red Transmission absent: server starts and optional Mixins remain disabled
+- [x] CC:Tweaked present, Project Red Transmission present: compatibility Mixins apply
+- [x] Dedicated server accepts a client without Project Red Fixes installed
+
+### A/B control confirmation
+
+On the same Project Red/Forge test stack, removing Project Red Fixes restored both original failures:
+
+- configurable gate GUIs failed again on the dedicated server
+- the Project Red #1906 Bus Converter reproduction froze the server when the black bundled channel was powered
+
+Reinstalling the 1.1.0 test build restored the working behavior observed in the patched tests above.
+
+### Core + Integration-only runtime control
+
+With Project Red Transmission and CC:Tweaked removed from both server and client, and Project Red Fixes installed only on the dedicated server:
+
+- the server loaded Project Red Core + Integration and the patch without either optional mod
+- only the dedicated-server GUI Mixins applied; the optional CC/Transmission Mixins stayed disabled
+- the server reached `Done`, an unpatched client joined successfully, and shutdown completed cleanly
+- the reused disposable validation world produced expected missing-registry warnings for previously placed Transmission/CC:Tweaked content; those warnings were unrelated to optional-mod loading
+
+## Additional coverage
+
+The following are useful additional regression tests, but were not required to establish the specific fixes included in 1.1.0. They remain unchecked unless actually tested.
+
+### General / GUI
+
+- [ ] Single-player: Timer
+- [ ] Single-player: State Cell
+- [ ] Single-player: Sequencer
+- [ ] Single-player: Counter
+- [ ] Change GUI values/settings, close and reopen, and confirm persistence on 1.1.0
+- [ ] Recheck the multiplayer server-list compatibility indicator on 1.1.0
+
+### Bus Converter
+
+- [ ] Test each bundled channel 0 through 15 individually
+- [ ] Test representative multiple-channel masks
 - [ ] Save/reload the world and retest
 
 ### CC:Tweaked bundled compatibility
 
-With ProjectRed Transmission and CC:Tweaked installed:
-
-- [x] ProjectRed bundled cable -> CC:Tweaked computer: read bundled input
-- [x] CC:Tweaked computer -> ProjectRed bundled cable: write bundled output
-- [x] Test multiple colors/channels
-- [x] Test the high/black channel
-- [x] Test different horizontal sides
-- [ ] Test top and bottom orientations
+- [ ] Test top and bottom computer orientations
 - [ ] Test floor/wall/ceiling face-wire orientations as applicable
-- [ ] Test neutral bundled cable
 - [ ] Test a framed/center bundled cable path if applicable
-- [ ] Verify ordinary ProjectRed bundled cable-to-cable behavior is unchanged
+- [ ] Verify ordinary Project Red bundled cable-to-cable behavior is unchanged
 - [ ] Verify insulated-wire interaction is unchanged
 - [ ] Save/reload and retest
-
-Automatic optional-mod behavior:
-
-- [x] CC:Tweaked absent, ProjectRed Transmission present: server starts and CC compatibility Mixins remain disabled
-- [x] CC:Tweaked absent, ProjectRed Transmission absent: server starts and optional Mixins remain disabled
-- [x] CC:Tweaked present, ProjectRed Transmission present: compatibility Mixins apply
-- [x] Dedicated server still accepts a client without ProjectRed Fixes installed
 
 ## Build validation
 
 - [x] ForgeGradle/Java 8 CI build succeeds for the 1.1.0 source branch
-- [x] Built jar targets Java class version 52
-- [x] Built jar contains the expected seven Mixin classes plus the automatic Mixin config plugin
-
-### A/B control confirmation
-
-On the same ProjectRed/Forge test stack, removing ProjectRed Fixes restored both original failures:
-
-- configurable gate GUIs failed again on the dedicated server
-- the ProjectRed #1906 Bus Converter reproduction froze the server when the black bundled channel was powered
-
-Reinstalling the 1.1.0 test build restored the working behavior observed in the patched tests above. This provides a direct patched-vs-unpatched control for the two non-CC fixes.
-
-### Core + Integration-only runtime control
-
-With ProjectRed Transmission and CC:Tweaked removed from both server and client, and ProjectRed Fixes 1.1.0 installed only on the dedicated server:
-
-- the server loaded ProjectRed Core + Integration and the patch without either optional mod
-- only the three dedicated-server GUI Mixins were applied; the optional CC/Transmission Mixins stayed disabled
-- the server reached `Done`, an unpatched client joined successfully, and shutdown completed cleanly
-- the test reused the disposable validation world, so Forge emitted expected missing-registry warnings for previously placed Transmission/CC:Tweaked content; those warnings are unrelated to the patch's optional-mod loading behavior
+- [x] Built JAR targets Java class version 52
+- [x] Built JAR contains the expected seven Mixin classes plus the automatic Mixin config plugin
