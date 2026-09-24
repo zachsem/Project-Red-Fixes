@@ -1,14 +1,14 @@
 # Contributing
 
-Bug reports, compatibility findings, and narrowly scoped ProjectRed 1.16.5 fixes are welcome.
+Bug reports, compatibility findings, and narrowly scoped Project Red 1.16.5 fixes are welcome.
 
 ## Before opening an issue
 
-- Reproduce the problem with the newest release of ProjectRed Fixes.
-- Confirm the exact ProjectRed, Forge, CodeChickenLib, and CBMultipart versions.
-- Include ProjectRed Transmission and CC:Tweaked versions when they are relevant.
+- Reproduce the problem with the newest release of Project Red Fixes.
+- Confirm the exact Project Red and Forge versions.
+- Include Project Red Transmission and CC:Tweaked versions when they are relevant.
 - Test on a true dedicated server when the problem involves server behavior.
-- Keep the original ProjectRed jars unmodified.
+- Keep the original Project Red JARs unmodified.
 
 ## Bug reports
 
@@ -23,14 +23,14 @@ Identify which area is affected:
 
 ## Pull requests
 
-Keep changes narrowly focused on restoring intended ProjectRed 4.15.0 behavior.
+Keep changes narrowly focused on restoring intended Project Red 1.16.5 behavior.
 
 Important constraints:
 
 - do not add client-only `net.minecraft.client` references to common/server patch code
 - preserve server-only client compatibility
 - keep CC:Tweaked optional
-- keep ProjectRed Transmission optional unless a future fix truly requires it
+- keep Project Red Transmission optional unless a future fix truly requires it
 - preserve the existing technical mod ID
 - prefer surgical Mixins/backports over copied upstream classes
 - test optional-mod combinations before considering compatibility changes complete
