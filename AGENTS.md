@@ -2,9 +2,15 @@
 
 ## Project purpose
 
-ProjectRed Dedicated Server GUI Fix is a narrowly scoped Forge 1.16.5 patch for ProjectRed Integration 4.15.0.
+ProjectRed 1.16.5 Fixes is a narrowly scoped Forge 1.16.5 compatibility patch collection for ProjectRed 4.15.0.
 
-The target bug is ProjectRed issue #1827: configurable gates can reference client-only GUI screen classes from dedicated-server interaction code.
+Current fixes:
+
+1. ProjectRed #1827 — dedicated-server gate GUI classloading failure
+2. ProjectRed #1906 — Bus Converter freeze caused by signed bit shifting
+3. ProjectRed #1826 — CC:Tweaked bundled-signal compatibility
+
+Do not add unrelated gameplay changes, recipes, balance changes, or new content.
 
 ## Supported stack
 
@@ -12,13 +18,14 @@ The target bug is ProjectRed issue #1827: configurable gates can reference clien
 - Forge 36.2.34
 - ProjectRed Core 4.15.0
 - ProjectRed Integration 4.15.0
+- ProjectRed Transmission 4.15.0 when the optional bundled/CC fix is relevant
 - CodeChickenLib 4.0.7.445
 - CBMultipart 3.0.4.123
 - Java 8
 
 Do not broaden compatibility claims without testing.
 
-## Patch behavior
+## Existing GUI patch
 
 Affected gates:
 
@@ -31,18 +38,38 @@ The patch redirects ProjectRed's static `TimerScreen.open` / `CounterScreen.open
 
 The bridge must remain server-safe and must not import or reference `net.minecraft.client` classes.
 
-It intentionally reuses:
+It intentionally reuses ProjectRed's existing Integration network channel and packet IDs.
 
-- `IntegrationNetwork.NET_CHANNEL`
-- `IntegrationNetwork.OPEN_TIMER_GUI_FROM_SERVER`
-- `IntegrationNetwork.OPEN_COUNTER_GUI_FROM_SERVER`
-- `IntegrationNetwork.writePartIndex(...)`
+## Bus Converter patch
 
-Do not add a replacement GUI or a second network protocol unless the existing ProjectRed protocol is proven insufficient.
+`BundledSignalsLibMixin` replaces the broken result path of `BundledSignalsLib.mostSignificantBit(int)` with 16-bit masked unsigned shifting.
 
-## Server-only requirement
+Preserve the ProjectRed 1.16 `(int) -> int` method signature. Do not change ProjectRed's caller ABI.
 
-The release is intended to be installed on the dedicated server only.
+The important high-bit case is a sign-extended Java `short` such as `0x8000`.
+
+## CC:Tweaked compatibility patch
+
+The backport follows upstream commit `41fe682f5da9bc1c9ed52ff9def6980d1421e8f7`.
+
+It corrects:
+
+- bundled interaction side calculation in `BundledGatePart`
+- bundled interaction side calculation in `BundledCablePart`
+- `TransmissionAPI#getBundledInput()`
+
+The optional compatibility Mixins must remain gated by the Mixin plugin and should apply only when both:
+
+- `computercraft`
+- `projectred-transmission`
+
+are present.
+
+Do not add direct CC:Tweaked class references to the patch. CC:Tweaked must remain optional.
+
+## Server-only compatibility
+
+The release is intended to remain compatible with dedicated-server-only installation.
 
 `ProjectRedServerGuiFix` registers Forge's `ExtensionPoint.DISPLAYTEST` with `FMLNetworkConstants.IGNORESERVERONLY`.
 
@@ -53,25 +80,17 @@ Do not remove or change this behavior without testing the multiplayer server-lis
 Use Java 8 and Gradle 7.6.1.
 
 ```bash
-gradle build
+./gradlew build
 ```
 
 ForgeGradle: 5.1.x.
 
 ## Required validation
 
-Before calling a change release-ready:
+Follow [docs/VALIDATION.md](docs/VALIDATION.md).
 
-1. Start a true dedicated server.
-2. Confirm the server reaches `Done`.
-3. Join with a client that does not have this patch installed.
-4. Confirm the multiplayer list does not mark the server incompatible.
-5. Test Timer, State Cell, Sequencer, and Counter.
-6. Change a setting in each GUI, close it, reopen it, and confirm the value persists.
-7. Check the server log for `invalid dist DEDICATED_SERVER`, Mixin errors, and handshake errors.
-
-Single-player testing is not a substitute for the dedicated-server test.
+A successful compile is not sufficient to call a release ready. The dedicated-server GUI regression, exact Bus Converter reproduction, high bundled bit, CC read/write behavior, optional-mod combinations, and unpatched-client connection all need runtime validation.
 
 ## Scope
 
-Prefer the smallest patch that restores intended ProjectRed behavior. Avoid unrelated features, balance changes, recipes, or content.
+Prefer the smallest patch that restores intended ProjectRed behavior. Do not modify or redistribute ProjectRed jars.
