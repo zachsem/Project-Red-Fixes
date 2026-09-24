@@ -4,7 +4,7 @@ Bug reports, compatibility findings, and narrowly scoped ProjectRed 1.16.5 fixes
 
 ## Before opening an issue
 
-- Reproduce the problem with the newest release of ProjectRed 1.16.5 Fixes.
+- Reproduce the problem with the newest release of ProjectRed Fixes.
 - Confirm the exact ProjectRed, Forge, CodeChickenLib, and CBMultipart versions.
 - Include ProjectRed Transmission and CC:Tweaked versions when they are relevant.
 - Test on a true dedicated server when the problem involves server behavior.
