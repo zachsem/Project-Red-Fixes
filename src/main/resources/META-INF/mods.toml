@@ -5,13 +5,13 @@ license="MIT"
 [[mods]]
 modId="projectred_server_gui_fix"
 version="${version}"
-displayName="ProjectRed Fixes"
+displayName="Project Red Fixes"
 authors="Zach"
 description='''
-Unofficial compatibility fixes for ProjectRed 4.15.0 on Minecraft 1.16.5.
+Unofficial compatibility fixes for Project Red on Minecraft 1.16.5.
 Includes the dedicated-server gate GUI fix, the Bus Converter server-freeze fix,
 and optional CC:Tweaked bundled-signal compatibility fixes when the relevant
-mods are installed. Does not modify or redistribute ProjectRed.
+mods are installed. Does not modify or redistribute Project Red.
 '''
 
 [[dependencies.projectred_server_gui_fix]]
@@ -32,13 +32,6 @@ side="BOTH"
 modId="codechickenlib"
 mandatory=true
 versionRange="[4.0.7.445]"
-ordering="AFTER"
-side="BOTH"
-
-[[dependencies.projectred_server_gui_fix]]
-modId="cb_multipart"
-mandatory=true
-versionRange="[3.0.4.123]"
 ordering="AFTER"
 side="BOTH"
 
