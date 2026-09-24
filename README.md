@@ -117,7 +117,7 @@ This is a ForgeGradle 5.1 project targeting Java 8.
 
 Use the GitHub **Issues** tab for bug reports and narrowly scoped compatibility requests:
 
-**[Report an issue or request a fix](https://github.com/zachsem/ProjectRed-Dedicated-Server-GUI-Fix/issues)**
+**[Report an issue or request a fix](https://github.com/zachsem/Project-Red-Fixes/issues)**
 
 ## Credits
 
