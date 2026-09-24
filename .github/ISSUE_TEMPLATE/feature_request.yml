@@ -1,5 +1,5 @@
 name: Feature request
-description: Suggest a narrowly scoped improvement to ProjectRed Dedicated Server GUI Fix
+description: Suggest a narrowly scoped improvement to ProjectRed 1.16.5 Fixes
 title: "[Feature]: "
 body:
   - type: textarea
@@ -12,8 +12,8 @@ body:
   - type: textarea
     id: problem
     attributes:
-      label: What problem would this solve?
-      description: Explain the current limitation or compatibility issue.
+      label: What ProjectRed 1.16.5 problem would this solve?
+      description: Link an upstream ProjectRed issue or later-version fix when possible.
     validations:
       required: true
 
@@ -28,7 +28,7 @@ body:
     attributes:
       label: Scope check
       options:
-        - label: This request is directly related to the ProjectRed 1.16.5 dedicated-server GUI patch.
+        - label: This request restores or protects intended ProjectRed 1.16.5 behavior rather than adding unrelated content.
           required: true
         - label: I checked existing issues for the same request.
           required: true
