@@ -7,7 +7,7 @@ plugins {
 
 version = mod_version
 group = 'com.projectredserverguifix'
-archivesBaseName = 'ProjectRed1165Fixes'
+archivesBaseName = 'ProjectRedFixes'
 
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
@@ -65,10 +65,10 @@ processResources {
 jar {
     manifest {
         attributes([
-                'Specification-Title'      : 'ProjectRed 1.16.5 Fixes',
+                'Specification-Title'      : 'ProjectRed Fixes',
                 'Specification-Vendor'     : 'Zach',
                 'Specification-Version'    : project.version,
-                'Implementation-Title'     : 'ProjectRed 1.16.5 Fixes',
+                'Implementation-Title'     : 'ProjectRed Fixes',
                 'Implementation-Version'   : project.version,
                 'Implementation-Vendor'    : 'Zach',
                 'MixinConfigs'             : 'projectred_server_gui_fix.mixins.json'
