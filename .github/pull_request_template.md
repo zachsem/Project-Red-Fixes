@@ -9,7 +9,7 @@ Describe the ProjectRed fix or compatibility change.
 - [ ] CC:Tweaked bundled input and output checked if relevant
 - [ ] Optional-mod combinations checked if relevant
 - [ ] Tested on a true dedicated server
-- [ ] Tested with ProjectRed 1.16.5 Fixes absent from the dedicated-server client
+- [ ] Tested with ProjectRed Fixes absent from the dedicated-server client
 - [ ] Relevant log output reviewed
 
 ## Scope
