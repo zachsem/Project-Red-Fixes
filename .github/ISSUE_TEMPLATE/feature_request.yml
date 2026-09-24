@@ -1,5 +1,5 @@
 name: Feature request
-description: Suggest a narrowly scoped improvement to ProjectRed 1.16.5 Fixes
+description: Suggest a narrowly scoped improvement to ProjectRed Fixes
 title: "[Feature]: "
 body:
   - type: textarea
