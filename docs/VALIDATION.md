@@ -1,6 +1,6 @@
 # Validation matrix
 
-Version 1.0.0 was validated against the following stack:
+## Target stack
 
 | Component | Version |
 | --- | --- |
@@ -8,37 +8,90 @@ Version 1.0.0 was validated against the following stack:
 | Forge | 36.2.34 |
 | ProjectRed Core | 4.15.0 |
 | ProjectRed Integration | 4.15.0 |
+| ProjectRed Transmission | 4.15.0 when applicable |
 | CodeChickenLib | 4.0.7.445 |
 | CBMultipart | 3.0.4.123 |
 | Dedicated server Java | Java 8 |
 
-## Baseline reproduction
+## 1.0.0 validation history
 
-Without the patch, right-clicking affected ProjectRed configurable gates on a true dedicated server reproduced the server-side classloading error involving:
+Version 1.0.0 was validated on a true Forge dedicated server with an unpatched client.
 
-```text
-net/minecraft/client/gui/screen/Screen
-```
+Without the patch, right-clicking affected ProjectRed configurable gates reproduced the server-side classloading error involving `net/minecraft/client/gui/screen/Screen` and `DEDICATED_SERVER`.
 
-and the `DEDICATED_SERVER` distribution.
+With the patch installed on the dedicated server:
 
-## Patched validation
+- the client joined successfully
+- Forge's multiplayer compatibility check accepted the server
+- Timer, State Cell, Sequencer, and Counter GUIs opened
+- the original dedicated-server client-class loading error did not recur
+- server shutdown was clean
 
-The following were tested successfully with the patch installed on the dedicated server:
+## 1.1.0 release validation
 
-- Timer
-- State Cell
-- Sequencer
-- Counter
+Do not mark 1.1.0 release-ready until all applicable items below have been completed.
 
-The client did not have ProjectRed Dedicated Server GUI Fix installed.
+### Existing GUI fix
 
-Observed results:
+- [ ] Single-player: Timer
+- [ ] Single-player: State Cell
+- [ ] Single-player: Sequencer
+- [ ] Single-player: Counter
+- [ ] Dedicated server: Timer
+- [ ] Dedicated server: State Cell
+- [ ] Dedicated server: Sequencer
+- [ ] Dedicated server: Counter
+- [ ] Change values/settings, close and reopen, and confirm persistence
+- [ ] Dedicated-server client does not have the patch installed
+- [ ] Multiplayer server list reports the server as compatible
+- [ ] No `invalid dist DEDICATED_SERVER` / client-class loading error
 
-- Client joined successfully.
-- Forge multiplayer compatibility check accepted the server.
-- All four configuration GUIs opened.
-- The original dedicated-server client-class loading error did not recur.
-- Server shutdown was clean.
+### Bus Converter
 
-The release intentionally makes compatibility claims only for the exact dependency versions above.
+Baseline, without the patch:
+
+- [ ] Reproduce ProjectRed issue #1906 using a Bus Converter in its second mode
+- [ ] Connect neutral bundled wire
+- [ ] Connect black insulated wire
+- [ ] Power the setup
+- [ ] Confirm the original unpatched stack reaches `BundledSignalsLib.mostSignificantBit()` and hangs/watchdog-crashes
+
+With the patch:
+
+- [ ] Exact #1906 setup no longer hangs or watchdog-crashes
+- [ ] Bus Converter still converts normally
+- [ ] Test each bundled channel 0 through 15 individually
+- [ ] Explicitly verify channel 15 / black / `0x8000`
+- [ ] Test representative multiple-channel masks
+- [ ] Repeatedly power/unpower the setup
+- [ ] Save/reload the world and retest
+
+### CC:Tweaked bundled compatibility
+
+With ProjectRed Transmission and CC:Tweaked installed:
+
+- [ ] ProjectRed bundled cable -> CC:Tweaked computer: read bundled input
+- [ ] CC:Tweaked computer -> ProjectRed bundled cable: write bundled output
+- [ ] Test multiple colors/channels
+- [ ] Test the high/black channel
+- [ ] Test different horizontal sides
+- [ ] Test top and bottom orientations
+- [ ] Test floor/wall/ceiling face-wire orientations as applicable
+- [ ] Test neutral bundled cable
+- [ ] Test a framed/center bundled cable path if applicable
+- [ ] Verify ordinary ProjectRed bundled cable-to-cable behavior is unchanged
+- [ ] Verify insulated-wire interaction is unchanged
+- [ ] Save/reload and retest
+
+Automatic optional-mod behavior:
+
+- [ ] CC:Tweaked absent, ProjectRed Transmission present: server starts and CC compatibility Mixins remain disabled
+- [ ] CC:Tweaked absent, ProjectRed Transmission absent: server starts and optional Mixins remain disabled
+- [ ] CC:Tweaked present, ProjectRed Transmission present: compatibility Mixins apply
+- [ ] Dedicated server still accepts a client without ProjectRed 1.16.5 Fixes installed
+
+## Build validation
+
+- [x] ForgeGradle/Java 8 CI build succeeds for the 1.1.0 source branch
+- [x] Built jar targets Java class version 52
+- [x] Built jar contains the expected seven Mixin classes plus the automatic Mixin config plugin
