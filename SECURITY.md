@@ -2,12 +2,12 @@
 
 ## Supported Versions
 
-Security fixes are considered for the current release of **ProjectRed Fixes** for Minecraft 1.16.5.
+Security fixes are considered for the current release of **Project Red Fixes** for Minecraft 1.16.5.
 
 | Version | Supported |
 | --- | --- |
-| 1.1.x | Current development/release line |
-| 1.0.0 | Superseded after 1.1.0 is released |
+| 1.1.x | Current release line |
+| 1.0.0 | Superseded |
 | Test builds / older versions | No |
 
 ## Reporting a Vulnerability
@@ -18,4 +18,4 @@ Do not open a public GitHub issue for a vulnerability until it has been reviewed
 
 For ordinary crashes, compatibility problems, GUI failures, Bus Converter problems, or bundled-signal issues, use the normal GitHub Issues form.
 
-When reporting a security issue, include the affected patch version, Minecraft/Forge/ProjectRed versions, steps to reproduce, relevant logs, and any known impact or workaround.
+When reporting a security issue, include the affected patch version, Minecraft/Forge/Project Red versions, steps to reproduce, relevant logs, and any known impact or workaround.
