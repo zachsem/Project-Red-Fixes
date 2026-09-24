@@ -1,6 +1,6 @@
-# ProjectRed 1.16.5 Fixes
+# ProjectRed Fixes
 
-**ProjectRed 1.16.5 Fixes** is an unofficial compatibility patch collection for **ProjectRed 4.15.0 on Minecraft 1.16.5**.
+**ProjectRed Fixes** is an unofficial compatibility patch collection for **ProjectRed 4.15.0 on Minecraft 1.16.5**.
 
 It keeps the existing dedicated-server gate GUI fix and adds two additional backports for confirmed ProjectRed 1.16.5 bugs:
 
@@ -14,7 +14,7 @@ The fixes are isolated internally and activate automatically when relevant. Ther
 
 Installable releases are published on **CurseForge**:
 
-**[Download ProjectRed 1.16.5 Fixes on CurseForge](https://www.curseforge.com/minecraft/mc-mods/projectred-dedicated-server-gui-fix)**
+**[Download ProjectRed Fixes on CurseForge](https://www.curseforge.com/minecraft/mc-mods/projectred-dedicated-server-gui-fix)**
 
 > **Important:** GitHub's **Code → Download ZIP** option downloads the project source code, not the installable mod. Download the release `.jar` from CurseForge and place that file in the appropriate `mods` folder.
 
@@ -82,7 +82,7 @@ Compatibility claims are intentionally limited to the ProjectRed 4.15.0 stack ab
 ## Installation
 
 1. Install ProjectRed and its normal dependencies.
-2. Place the **ProjectRed 1.16.5 Fixes** jar in the server's `mods` folder.
+2. Place the **ProjectRed Fixes** jar in the server's `mods` folder.
 3. If upgrading from 1.0.0, remove the old `ProjectRedServerGuiFix-1.0.0.jar`; do not keep both versions installed.
 4. Start the server normally.
 
@@ -144,7 +144,7 @@ For bug reports, include the exact Minecraft, Forge, ProjectRed, CodeChickenLib,
 ## Credits
 
 - **ProjectRed** — MrTJP, ChickenBones, covers1624, and contributors
-- **ProjectRed 1.16.5 Fixes** — zachsem
+- **ProjectRed Fixes** — zachsem
 
 This is an independent, unofficial compatibility project and is not an official ProjectRed release.
 
