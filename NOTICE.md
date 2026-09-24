@@ -1,15 +1,20 @@
 # Attribution and modification notice
 
-ProjectRed Dedicated Server GUI Fix is an independent compatibility patch created in 2026 for ProjectRed 4.15.0 on Minecraft 1.16.5.
+ProjectRed 1.16.5 Fixes is an independent compatibility patch collection created in 2026 for ProjectRed 4.15.0 on Minecraft 1.16.5.
 
-It does not replace or redistribute ProjectRed. The patch references ProjectRed classes at runtime and reuses ProjectRed's existing Integration network channel and GUI-open packet IDs so the original client GUI implementation remains responsible for rendering and configuration.
+It does not replace or redistribute ProjectRed. The project applies small runtime patches to restore intended behavior in the released 1.16.5 branch.
 
-Upstream references:
+Current upstream references:
 
 - ProjectRed repository: https://github.com/MrTJP/ProjectRed
 - ProjectRed 1.16.x license: https://github.com/MrTJP/ProjectRed/blob/1.16.x/LICENSE.md
 - Dedicated-server GUI report: https://github.com/MrTJP/ProjectRed/issues/1827
-- Related newer-branch fix: https://github.com/MrTJP/ProjectRed/pull/1796
+- Related GUI fix on newer code: https://github.com/MrTJP/ProjectRed/pull/1796
+- Bus Converter report: https://github.com/MrTJP/ProjectRed/issues/1906
+- Bus Converter upstream fix: https://github.com/MrTJP/ProjectRed/pull/1813
+- Later black-channel correction: https://github.com/MrTJP/ProjectRed/commit/ab9bd41bcf5ad4d811b9533ba590d9a277d3ab68
+- CC:Tweaked bundled-signal report: https://github.com/MrTJP/ProjectRed/issues/1826
+- Bundled-signal upstream fix: https://github.com/MrTJP/ProjectRed/commit/41fe682f5da9bc1c9ed52ff9def6980d1421e8f7
 
 This project is unofficial and is not maintained or endorsed by the ProjectRed authors.
 
