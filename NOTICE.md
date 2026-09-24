@@ -1,13 +1,13 @@
 # Attribution and modification notice
 
-ProjectRed Fixes is an independent compatibility patch collection created in 2026 for ProjectRed 4.15.0 on Minecraft 1.16.5.
+Project Red Fixes is an independent compatibility patch collection created in 2026 for Project Red on Minecraft 1.16.5.
 
-It does not replace or redistribute ProjectRed. The project applies small runtime patches to restore intended behavior in the released 1.16.5 branch.
+It does not replace or redistribute Project Red. The project applies small runtime patches to restore intended behavior in the released 1.16.5 branch.
 
 Current upstream references:
 
-- ProjectRed repository: https://github.com/MrTJP/ProjectRed
-- ProjectRed 1.16.x license: https://github.com/MrTJP/ProjectRed/blob/1.16.x/LICENSE.md
+- Project Red repository: https://github.com/MrTJP/ProjectRed
+- Project Red 1.16.x license: https://github.com/MrTJP/ProjectRed/blob/1.16.x/LICENSE.md
 - Dedicated-server GUI report: https://github.com/MrTJP/ProjectRed/issues/1827
 - Related GUI fix on newer code: https://github.com/MrTJP/ProjectRed/pull/1796
 - Bus Converter report: https://github.com/MrTJP/ProjectRed/issues/1906
@@ -16,11 +16,11 @@ Current upstream references:
 - CC:Tweaked bundled-signal report: https://github.com/MrTJP/ProjectRed/issues/1826
 - Bundled-signal upstream fix: https://github.com/MrTJP/ProjectRed/commit/41fe682f5da9bc1c9ed52ff9def6980d1421e8f7
 
-This project is unofficial and is not maintained or endorsed by the ProjectRed authors.
+This project is unofficial and is not maintained or endorsed by the Project Red authors.
 
-## ProjectRed license notice
+## Project Red license notice
 
-ProjectRed is distributed under the MIT License:
+Project Red is distributed under the MIT License:
 
 MIT License
 
