@@ -51,7 +51,6 @@ dependencies {
     implementation fg.deobf("mrtjp:ProjectRed:${mc_version}-${projectred_version}:transmission")
 
     implementation "codechicken:CodeChickenLib:${mc_version}-${ccl_version}:deobf"
-    implementation "codechicken:CBMultipart:${mc_version}-${cbm_version}:deobf"
 }
 
 processResources {
@@ -65,10 +64,10 @@ processResources {
 jar {
     manifest {
         attributes([
-                'Specification-Title'      : 'ProjectRed Fixes',
+                'Specification-Title'      : 'Project Red Fixes',
                 'Specification-Vendor'     : 'Zach',
                 'Specification-Version'    : project.version,
-                'Implementation-Title'     : 'ProjectRed Fixes',
+                'Implementation-Title'     : 'Project Red Fixes',
                 'Implementation-Version'   : project.version,
                 'Implementation-Vendor'    : 'Zach',
                 'MixinConfigs'             : 'projectred_server_gui_fix.mixins.json'
