@@ -1,0 +1,45 @@
+name: Setup standard issue labels
+
+on:
+  push:
+    paths:
+      - ".github/workflows/setup-standard-labels.yml"
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  setup-labels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create missing standard labels
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          gh api --paginate "repos/${GITHUB_REPOSITORY}/labels?per_page=100" --jq '.[].name' > /tmp/labels.txt
+
+          create_if_missing() {
+            local name="$1"
+            local color="$2"
+            local description="$3"
+
+            if grep -Fxq "$name" /tmp/labels.txt; then
+              echo "Exists: $name"
+              return
+            fi
+
+            gh api --method POST "repos/${GITHUB_REPOSITORY}/labels" \
+              -f name="$name" \
+              -f color="$color" \
+              -f description="$description"
+            echo "Created: $name"
+          }
+
+          create_if_missing "type: bug" "d73a4a" "Unexpected problem or unintended behavior"
+          create_if_missing "type: enhancement" "a2eeef" "Feature, improvement, or scoped change request"
+          create_if_missing "type: compatibility" "5319e7" "Compatibility or integration work"
+          create_if_missing "status: needs triage" "fbca04" "New issue awaiting initial review"
