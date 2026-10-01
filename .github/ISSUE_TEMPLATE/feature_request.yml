@@ -1,6 +1,9 @@
 name: Fix request
 description: Suggest a narrowly scoped Project Red compatibility fix
 title: "[Request]: "
+labels:
+  - "type: enhancement"
+  - "status: needs triage"
 body:
   - type: textarea
     id: feature
