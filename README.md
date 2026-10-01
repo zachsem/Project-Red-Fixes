@@ -47,6 +47,7 @@ Required:
 
 - [Project Red - Core](https://www.curseforge.com/minecraft/mc-mods/project-red-core)
 - [Project Red - Integration](https://www.curseforge.com/minecraft/mc-mods/project-red-integration)
+- [CodeChicken Lib](https://www.curseforge.com/minecraft/mc-mods/codechicken-lib) — used directly by Project Red Fixes for packet handling and bundled-redstone side calculations
 
 Optional:
 
