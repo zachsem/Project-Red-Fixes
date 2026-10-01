@@ -1,6 +1,9 @@
 name: Bug report
 description: Report a Project Red Fixes failure, crash, or compatibility problem
 title: "[Bug]: "
+labels:
+  - "type: bug"
+  - "status: needs triage"
 body:
   - type: input
     id: minecraft
@@ -67,3 +70,11 @@ body:
       description: Drag and drop latest.log or the relevant crash report here.
     validations:
       required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I checked existing issues for the same problem.
+          required: true
